@@ -1,18 +1,14 @@
 import React,{useState} from "react";
-import { Button } from "react-bootstrap";
+import SingInSingUp from "./page/SingInSingUp"
 
 function App() {
 
   const[user, setUser]= useState(null);
 
-  //return<div>{user?<h1>Estas logeado</h1>:<h1>No estas logeado</h1>}</div>
-
-  return(
-    <div>
-      <Button variant="primary">Primary</Button>{' '}
-  </div>
-  )
-  
+  return (
+  <div>
+    {user?<h1>Estas logeado</h1>:<div><SingInSingUp/></div>}
+    </div>)
   
 }
 export default App;
