@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import "./SingInSingUp.scss"
+import "./SignInSignUp.scss"
 import {Container, Row, Col, Button} from "react-bootstrap"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {
@@ -7,13 +7,17 @@ import {
     faUsers,
     faComment
   } from "@fortawesome/free-solid-svg-icons";
+
+import BasicModal from "../../components/Modal/BasicModal";
+import FormDeRegistro from "../../components/FormDeRegistro/index";
 import LogoWhiteTobban from "../../assets/png/logo-white.png";
 import LogoTobban from "../../assets/png/logo.png";
-import BasicModal from "../../components/Modal/BasicModal";
 
 
 
-function SingInSingUp() {
+
+
+function SignInSignUp() {
     const [showModal, setShowModal] = useState(false)
     const [contentModal, setContentModal] = useState(null)
 
@@ -24,7 +28,7 @@ function SingInSingUp() {
 
   return (
     <>
-    <Container className='singin-singup' fluid>           {/* fluid ocupa toda la pagina */} 
+    <Container className='signin-signup' fluid>           {/* fluid ocupa toda la pagina */} 
         <Row>
             <LeftComponent/>
             <RightComponent openModal={openModal} setShowModal={setShowModal} />
@@ -39,7 +43,7 @@ function SingInSingUp() {
 
 function LeftComponent() {
     return(
-        <Col className="singin-singup__left" xs={6}>
+        <Col className="signin-signup__left" xs={6}>
       <img src={LogoTobban} alt="Twittor" />
       <div>
         <h2>
@@ -63,12 +67,12 @@ function RightComponent(props) {
     const { openModal, setShowModal} = props;
 
     return(
-    <Col className='singin-singup__right' xs={6}>
+    <Col className='signin-signup__right' xs={6}>
       <div>
         <img src={LogoWhiteTobban} alt="Tobban" />
         <h2>Mira lo que está pasando en el mundo en este momento</h2>
         <h3>Únete a Tobban hoy mismo.</h3>
-        <Button variant="primary"onClick={() => openModal(<h2>Form registro</h2>)}>
+        <Button variant="primary"onClick={() => openModal(<FormDeRegistro setShowModal={setShowModal} />)}>
           Regístrate
         </Button>
         <Button variant="outline-primary" onClick={() =>openModal(<h2>form inicio sesion</h2>)}>
@@ -79,4 +83,4 @@ function RightComponent(props) {
     )
 }
 
-export default SingInSingUp
+export default SignInSignUp
