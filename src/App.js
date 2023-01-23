@@ -1,14 +1,27 @@
-import React,{useState} from "react";
-import SignInSignUp from "./page/SignInSignUp"
+import React,{useState, useEffect} from "react";
+import SignInSignUp from "./page/register-login"
 import {ToastContainer} from "react-toastify";
+import {AuthContext} from "./utils/contexts"
+import { isUserLogedApi } from "./api/auth";
 
 function App() {
 
   const[user, setUser]= useState(null);
+  const[loadUser, setLoadUser]= useState(false);
+  const [refreshCheckLogin, setRefreshCheckLogin] = useState(false);
+  
+
+  useEffect(() => {
+    setUser(isUserLogedApi());
+    setRefreshCheckLogin(false);
+    setLoadUser(true);
+  }, [refreshCheckLogin])
+  
+    if(!loadUser) return null;
 
   return (
-  <div>
-    {user?<h1>Estas logeado</h1>:<div><SignInSignUp/></div>}
+  <AuthContext.Provider value={user}>
+    {user?<h1>Estas logeado</h1>:<SignInSignUp setRefreshCheckLogin= {setRefreshCheckLogin} />}
     <ToastContainer               // le damos la posición y diferentes configuracion a los mensajes de éxito/error que verá el cliente
         position="top-right"
         autoClose={5000}
@@ -20,7 +33,7 @@ function App() {
         draggable
         pauseOnHover
       />
-    </div>
+    </AuthContext.Provider>
     )
   
 }

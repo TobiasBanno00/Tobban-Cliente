@@ -10,6 +10,7 @@ import {
 
 import BasicModal from "../../components/Modal/BasicModal";
 import FormDeRegistro from "../../components/FormDeRegistro/index";
+import FormLogin from "../../components/FormLogin/index";
 import LogoWhiteTobban from "../../assets/png/logo-white.png";
 import LogoTobban from "../../assets/png/logo.png";
 
@@ -17,7 +18,8 @@ import LogoTobban from "../../assets/png/logo.png";
 
 
 
-function SignInSignUp() {
+function SignInSignUp(props) {
+    const {setRefreshCheckLogin}=props;
     const [showModal, setShowModal] = useState(false)
     const [contentModal, setContentModal] = useState(null)
 
@@ -31,7 +33,7 @@ function SignInSignUp() {
     <Container className='signin-signup' fluid>           {/* fluid ocupa toda la pagina */} 
         <Row>
             <LeftComponent/>
-            <RightComponent openModal={openModal} setShowModal={setShowModal} />
+            <RightComponent openModal={openModal} setShowModal={setShowModal} setRefreshCheckLogin= {setRefreshCheckLogin} />
         </Row>
     </Container>
     <BasicModal show={showModal} setShow={setShowModal}> {contentModal} </BasicModal>
@@ -64,7 +66,7 @@ function LeftComponent() {
 }
 
 function RightComponent(props) {
-    const { openModal, setShowModal} = props;
+    const { openModal, setShowModal,setRefreshCheckLogin} = props;
 
     return(
     <Col className='signin-signup__right' xs={6}>
@@ -75,7 +77,7 @@ function RightComponent(props) {
         <Button variant="primary"onClick={() => openModal(<FormDeRegistro setShowModal={setShowModal} />)}>
           Regístrate
         </Button>
-        <Button variant="outline-primary" onClick={() =>openModal(<h2>form inicio sesion</h2>)}>
+        <Button variant="outline-primary" onClick={() =>openModal(<FormLogin setRefreshCheckLogin={setRefreshCheckLogin} />)}>
           Iniciar sesión
         </Button>
       </div>
