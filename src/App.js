@@ -3,6 +3,7 @@ import SignInSignUp from "./page/register-login"
 import {ToastContainer} from "react-toastify";
 import {AuthContext} from "./utils/contexts"
 import { isUserLogedApi } from "./api/auth";
+import Routing from "./routes/Routing";
 
 function App() {
 
@@ -21,7 +22,8 @@ function App() {
 
   return (
   <AuthContext.Provider value={user}>
-    {user?<h1>Estas logeado</h1>:<SignInSignUp setRefreshCheckLogin= {setRefreshCheckLogin} />}
+    {user?<Routing setRefreshCheckLogin={setRefreshCheckLogin} />:<SignInSignUp setRefreshCheckLogin= {setRefreshCheckLogin} />}
+
     <ToastContainer               // le damos la posición y diferentes configuracion a los mensajes de éxito/error que verá el cliente
         position="top-right"
         autoClose={5000}
@@ -33,6 +35,7 @@ function App() {
         draggable
         pauseOnHover
       />
+
     </AuthContext.Provider>
     )
   
