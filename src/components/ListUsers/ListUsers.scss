@@ -1,0 +1,29 @@
+@import "../../scss/index.scss";
+
+
+.noResultados{
+  text-align: center;
+  padding:30px;
+  font-size: 25px;
+  border-bottom: 1px solid $border-grey;
+}
+
+.list-users {
+  padding: 0;
+
+  &__user {
+    background-color: $background-grey-dark ;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    padding: 15px 30px;
+    color: $font-light;
+    border-bottom: 1px solid $border-grey;
+
+    &:hover {
+      color: $font-light;
+      background-color: $background-dark-light;
+      text-decoration: none;
+    }
+  }
+}
